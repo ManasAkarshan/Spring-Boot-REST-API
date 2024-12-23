@@ -2,10 +2,8 @@ package com.manas.SpringBootRestAPI.controller;
 
 import com.manas.SpringBootRestAPI.dto.EmployeeDTO;
 import com.manas.SpringBootRestAPI.services.EmployeeService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
