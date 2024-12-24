@@ -22,7 +22,6 @@ public class EmployeeService {
         this.repo = repo;
     }
 
-
     public EmployeeDTO getEmployeeById(long id){
         EmployeeEntity et = repo.getReferenceById(id);
         return new EmployeeDTO(et.getId(), et.getName(), et.isActive(), et.getDataOfJoining());
@@ -42,5 +41,10 @@ public class EmployeeService {
         if(!isPresent) return false;
         repo.deleteById(id);
         return true;
+    }
+
+    public List<EmployeeDTO> getActiveUsers() {
+        List<EmployeeEntity> activeUsers = repo.findByIsActive(true);
+        return activeUsers.stream().map(employeeEntity->modelMapper.map(employeeEntity, EmployeeDTO.class)).collect(Collectors.toList());
     }
 }

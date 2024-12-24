@@ -5,6 +5,9 @@ import com.manas.SpringBootRestAPI.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/employees")
@@ -16,7 +19,7 @@ public class EmployeeController {
         this.service = service;
     }
 
-    //    GET  / employees
+    //    GET  /employees/
     @GetMapping("/")
     public List<EmployeeDTO> getEmployees(){
 //        return new EmployeeDTO(12L, "Manas", true, LocalDate.of(2024, 11, 28));
@@ -48,5 +51,11 @@ public class EmployeeController {
     public boolean deleteEmployeeById(@PathVariable long id){
         return service.deleteEmployeeById(id);
     }
+
+    @GetMapping("/active")
+    public List<EmployeeDTO> getActiveUsers() {
+        return service.getActiveUsers();
+    }
+    
 
 }

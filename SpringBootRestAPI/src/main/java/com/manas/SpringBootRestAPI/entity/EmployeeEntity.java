@@ -12,6 +12,7 @@ public class EmployeeEntity {
     private Long id;
     private String name;
     private LocalDate dataOfJoining;
+    @Column(name = "active")
     private boolean isActive;
 
     public EmployeeEntity() {
@@ -45,7 +46,7 @@ public class EmployeeEntity {
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.isActive = active;
     }
 
     public LocalDate getDataOfJoining() {
