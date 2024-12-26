@@ -5,17 +5,17 @@ import java.time.LocalDate;
 public class EmployeeDTO {
     private Long id;
     private String name;
-    private LocalDate dataOfJoining;
+    private LocalDate dateOfJoining;
     private boolean isActive;
 
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(Long id, String name, boolean isActive, LocalDate dataOfJoining) {
+    public EmployeeDTO(Long id, String name, boolean isActive, LocalDate dateOfJoining) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
-        this.dataOfJoining = dataOfJoining;
+        this.dateOfJoining = dateOfJoining;
     }
 
     public Long getId() {
@@ -42,11 +42,11 @@ public class EmployeeDTO {
         isActive = active;
     }
 
-    public LocalDate getDataOfJoining() {
-        return dataOfJoining;
+    public LocalDate getdateOfJoining() {
+        return dateOfJoining;
     }
 
-    public void setDataOfJoining(LocalDate dataOfJoining) {
-        this.dataOfJoining = dataOfJoining;
+    public void setdateOfJoining(LocalDate dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
     }
 }

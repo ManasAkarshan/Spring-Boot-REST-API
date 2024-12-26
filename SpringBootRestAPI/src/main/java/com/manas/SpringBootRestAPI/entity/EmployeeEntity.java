@@ -11,7 +11,7 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private LocalDate dataOfJoining;
+    private LocalDate dateOfJoining;
     @Column(name = "active")
     private boolean isActive;
 
@@ -22,7 +22,7 @@ public class EmployeeEntity {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
-        this.dataOfJoining = dataOfJoining;
+        this.dateOfJoining = dataOfJoining;
     }
 
     public Long getId() {
@@ -50,10 +50,10 @@ public class EmployeeEntity {
     }
 
     public LocalDate getDataOfJoining() {
-        return dataOfJoining;
+        return dateOfJoining;
     }
 
     public void setDataOfJoining(LocalDate dataOfJoining) {
-        this.dataOfJoining = dataOfJoining;
+        this.dateOfJoining = dataOfJoining;
     }
 }
