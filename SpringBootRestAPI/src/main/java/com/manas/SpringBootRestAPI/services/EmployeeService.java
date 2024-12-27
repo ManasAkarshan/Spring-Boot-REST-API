@@ -2,6 +2,7 @@ package com.manas.SpringBootRestAPI.services;
 
 import com.manas.SpringBootRestAPI.dto.EmployeeDTO;
 import com.manas.SpringBootRestAPI.entity.EmployeeEntity;
+import com.manas.SpringBootRestAPI.exception.EmployeeNotFoundException;
 import com.manas.SpringBootRestAPI.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,9 @@ public class EmployeeService {
     }
 
     public EmployeeDTO getEmployeeById(long id){
-        EmployeeEntity et = repo.getReferenceById(id);
-        return new EmployeeDTO(et.getId(), et.getName(), et.isActive(), et.getDataOfJoining());
+        return repo.findById(id)
+        .map(entity -> modelMapper.map(entity, EmployeeDTO.class)) // Convert entity to DTO
+        .orElseThrow(EmployeeNotFoundException::new);
     }
 
     public EmployeeDTO createNewEmployee(EmployeeDTO emp) {
