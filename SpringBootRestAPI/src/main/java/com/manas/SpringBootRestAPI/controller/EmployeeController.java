@@ -1,11 +1,14 @@
 package com.manas.SpringBootRestAPI.controller;
 
 import com.manas.SpringBootRestAPI.dto.EmployeeDTO;
+import com.manas.SpringBootRestAPI.exception.EmployeeNotFoundException;
 import com.manas.SpringBootRestAPI.services.EmployeeService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/employees")
@@ -19,14 +22,25 @@ public class EmployeeController {
 
     //    GET  /employees/
     @GetMapping("/")
-    public List<EmployeeDTO> getEmployees(){
-//        return new EmployeeDTO(12L, "Manas", true, LocalDate.of(2024, 11, 28));
-        return service.getAllEmployees();
+    public ResponseEntity<List<EmployeeDTO>> getEmployee(){
+        List<EmployeeDTO> employees = service.getAllEmployees();
+        if(employees.isEmpty()){
+            throw new EmployeeNotFoundException();
+        }
+        else{
+            return new ResponseEntity<>(employees, HttpStatus.OK);
+        }
     }
+//     public List<EmployeeDTO> getEmployees(){
+// //        return new EmployeeDTO(12L, "Manas", true, LocalDate.of(2024, 11, 28));
+//         return service.getAllEmployees();
+//     }
 
     @GetMapping("/{id}")
-    public EmployeeDTO getEmployees(@PathVariable("id") long id){
-        return service.getEmployeeById(id);
+    public ResponseEntity<EmployeeDTO> getEmployees(@PathVariable("id") long id){
+        // System.out.println("asgdsdg");
+        EmployeeDTO emp = service.getEmployeeById(id);
+        return new ResponseEntity<>(emp, HttpStatus.OK);
     }
 
 //    @GetMapping("/")  // http://localhost:8080/employee?sortBy=age&limit=10  Hello age 10
